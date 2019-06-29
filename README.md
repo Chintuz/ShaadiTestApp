@@ -1,6 +1,6 @@
 # ShaadiTestApp
 
-- its a test app for shaadi. 
+- its a test app for shaadi in kotlin lamguage.
 
 - It includes api calling that fetch numbers of data configured in Constants
   You can change and check
