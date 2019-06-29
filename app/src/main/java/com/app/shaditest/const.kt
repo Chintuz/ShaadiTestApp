@@ -6,4 +6,5 @@ object Const {
 
     const val BASE_URL = "https://randomuser.me/"
 
+    const val ITEM_COUNT = 10
 }

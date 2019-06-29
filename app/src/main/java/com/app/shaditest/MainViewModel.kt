@@ -22,22 +22,22 @@ class MainViewModel : ViewModel() {
     var errorData = MutableLiveData<ErrorData>()
 
     fun getData(): Disposable {
-        return api.getData()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { response: Response<ResponseData>? ->
-                            if (response != null && response.isSuccessful && response.body() != null) {
-                                responseData.value = response.body()
-                            } else {
-                                errorData.value = ErrorData(response?.code()!!, Const.ERROR_MESSAGE)
-                            }
-                        },
-                        { t: Throwable? ->
-                            Log.e("error", t?.message)
-                            errorData.value = ErrorData(400, Const.ERROR_MESSAGE)
-                        }
-                )
+        return api.getData(Const.ITEM_COUNT)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { response: Response<ResponseData>? ->
+                    if (response != null && response.isSuccessful && response.body() != null) {
+                        responseData.value = response.body()
+                    } else {
+                        errorData.value = ErrorData(response?.code()!!, Const.ERROR_MESSAGE)
+                    }
+                },
+                { t: Throwable? ->
+                    Log.e("error", t?.message)
+                    errorData.value = ErrorData(400, Const.ERROR_MESSAGE)
+                }
+            )
     }
 
 }
